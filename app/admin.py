@@ -95,6 +95,8 @@ def upload():
 
         file = request.files["file"]
 
+        os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
+
         if file.filename != "":
 
             filename = secure_filename(file.filename)
@@ -151,6 +153,7 @@ def new_event():
         excel.save(excel_path)
 
         # сохраняем zip
+        os.makedirs(Config.TICKETS_FOLDER, exist_ok=True)
         zip_path = os.path.join(
             Config.UPLOAD_FOLDER,
             "tickets.zip"
