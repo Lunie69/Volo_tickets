@@ -13,7 +13,6 @@ def import_excel(filepath):
         volunteer = Volunteer(
             fullname=str(row["fullname"]).strip(),
             iin=str(row["iin"]).strip(),
-            ticket_file=str(row["ticket_file"]).strip()
         )
 
         db.session.add(volunteer)
