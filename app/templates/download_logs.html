@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Журнал скачиваний</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+th,td{
+
+border:1px solid #ddd;
+
+padding:10px;
+
+}
+
+th{
+
+background:#1565c0;
+
+color:white;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container" style="width:1000px;max-width:95%;">
+
+<h1>Журнал скачиваний</h1>
+
+<table>
+
+<tr>
+
+<th>Дата</th>
+
+<th>ФИО</th>
+
+<th>ИИН</th>
+
+<th>Билет</th>
+
+<th>IP</th>
+
+</tr>
+
+{% for log in logs %}
+
+<tr>
+
+<td>{{ log.downloaded_at.strftime("%d.%m.%Y %H:%M") }}</td>
+
+<td>{{ log.volunteer.fullname }}</td>
+
+<td>********{{ log.volunteer.iin[-4:] }}</td>
+
+<td>{{ log.volunteer.ticket_file }}</td>
+
+<td>{{ log.ip_address }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="{{ url_for('admin.dashboard') }}">
+
+Назад
+
+</a>
+
+</div>
+
+</body>
+
+</html>

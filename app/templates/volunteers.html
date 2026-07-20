@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Волонтёры</title>
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Поиск по ФИО или ИИН"
+value="{{ search }}">
+
+<button>
+
+🔍 Найти
+
+</button>
+
+</form>
+
+<br>
+
+<a href="{{ url_for('admin.volunteers') }}">
+
+🔄 Сбросить поиск
+
+</a>
+
+<br><br>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<br>
+
+<a href="{{ url_for('admin.add_volunteer') }}">
+
+➕ Добавить волонтёра
+
+</a>
+
+<br><br>
+
+<style>
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+th,td{
+
+border:1px solid #ddd;
+
+padding:10px;
+
+text-align:left;
+
+}
+
+th{
+
+background:#1565c0;
+
+color:white;
+
+}
+
+input{
+
+width:100%;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container" style="width:900px;max-width:95%;">
+
+<h1>Все волонтёры</h1>
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Поиск по ФИО"
+value="{{ search }}">
+
+<br><br>
+
+<button>
+
+Найти
+
+</button>
+
+</form>
+
+<table>
+
+<tr>
+
+<th>ФИО</th>
+
+<th>ИИН</th>
+
+<th>Билет</th>
+
+<th>Скачиваний</th>
+
+<th>Действия</th>
+
+</tr>
+
+{% for volunteer in volunteers %}
+
+<tr>
+
+<td>{{ volunteer.fullname }}</td>
+
+<td>********{{ volunteer.iin[-4:] }}</td>
+
+<td>{{ volunteer.ticket_file }}</td>
+
+<td>{{ volunteer.downloads }}</td>
+
+<td>
+
+<a href="{{ url_for('admin.edit_volunteer', volunteer_id=volunteer.id) }}">
+
+✏️
+
+</a>
+
+&nbsp;
+
+<a href="{{ url_for('admin.delete_volunteer', volunteer_id=volunteer.id) }}"
+onclick="return confirm('Удалить волонтёра?')">
+
+🗑️
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="{{ url_for('admin.dashboard') }}">
+Назад
+</a>
+
+</div>
+
+<br>
+
+<div style="text-align:center;">
+
+{% if pagination.has_prev %}
+
+<a href="{{ url_for('admin.volunteers',
+page=pagination.prev_num,
+search=search) }}">
+
+← Предыдущая
+
+</a>
+
+{% endif %}
+
+&nbsp;&nbsp;
+
+Страница {{ pagination.page }} из {{ pagination.pages }}
+
+&nbsp;&nbsp;
+
+{% if pagination.has_next %}
+
+<a href="{{ url_for('admin.volunteers',
+page=pagination.next_num,
+search=search) }}">
+
+Следующая →
+
+</a>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>

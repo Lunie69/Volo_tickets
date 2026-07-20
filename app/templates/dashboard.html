@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Панель администратора</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.menu a{
+display:block;
+margin:10px 0;
+text-decoration:none;
+font-size:18px;
+}
+
+.stats{
+
+background:#f3f3f3;
+
+padding:20px;
+
+border-radius:10px;
+
+margin-bottom:25px;
+
+}
+
+.stats p{
+
+font-size:18px;
+
+margin:8px 0;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Панель администратора</h1>
+
+<div class="stats">
+
+<h2>Статистика</h2>
+
+<p>👥 Всего волонтёров: <b>{{ total }}</b></p>
+
+<p>✅ Скачали билет: <b>{{ downloaded }}</b></p>
+
+<p>❌ Не скачали: <b>{{ not_downloaded }}</b></p>
+
+</div>
+
+<div class="menu">
+
+<a href="{{ url_for('admin.upload') }}">
+📤 Импорт Excel
+</a>
+
+<a href="{{ url_for('admin.volunteers') }}">
+👥 Волонтёры
+</a>
+
+<a href="{{ url_for('admin.logs') }}">
+📋 Журнал скачиваний
+</a>
+
+<a href="{{ url_for('admin.logout') }}">
+🚪 Выйти
+</a>
+
+<a href="{{ url_for('admin.export') }}">
+
+📥 Экспорт Excel
+
+</a>
+
+<a href="{{ url_for('admin.upload_tickets') }}">
+
+📦 Загрузить ZIP с билетами
+
+</a>
+
+<a href="{{ url_for('admin.ticket_status') }}">
+
+🎫 Проверить билеты
+
+</a>
+
+<a href="{{ url_for('admin.reset_tickets') }}"
+   onclick="return confirm('Очистить все привязанные билеты и журнал скачиваний?')">
+
+🗑 Сбросить все билеты
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

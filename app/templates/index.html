@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Volunteer Ticket System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Получение билета</h1>
+
+    <form method="POST">
+
+    <input
+            type="text"
+            name="fullname"
+            placeholder="ФИО"
+            required
+    >
+
+    <input
+            type="text"
+            name="iin"
+            placeholder="ИИН"
+            required
+    >
+
+    <button type="submit">
+        Получить билет
+    </button>
+
+</form>
+
+{% if error %}
+<p style="color:red; margin-top:15px;">
+    {{ error }}
+</p>
+{% endif %}
+
+{% if volunteer %}
+<p style="color:green; margin-top:15px;">
+    Билет найден.
+
+<br><br>
+
+<a href="{{ url_for('routes.download', volunteer_id=volunteer.id) }}">
+    Скачать билет
+</a>
+</p>
+{% endif %}
+
+</div>
+
+</body>
+</html>

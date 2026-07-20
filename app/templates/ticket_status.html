@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Статус билетов</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Проверка билетов</h1>
+
+<h2>
+
+Волонтёров: {{ volunteers }}
+
+</h2>
+
+<h2>
+
+PDF: {{ pdfs }}
+
+</h2>
+
+{% if volunteers == pdfs %}
+
+<h2 style="color:green;">
+
+✅ Всё готово
+
+</h2>
+
+{% elif pdfs > volunteers %}
+
+<h2 style="color:orange;">
+
+⚠ PDF больше на {{ pdfs-volunteers }}
+
+</h2>
+
+{% else %}
+
+<h2 style="color:red;">
+
+❌ Не хватает {{ volunteers-pdfs }} PDF
+
+</h2>
+
+{% endif %}
+
+<br>
+
+<a href="{{ url_for('admin.dashboard') }}">
+
+Назад
+
+</a>
+
+</div>
+
+</body>
+
+</html>

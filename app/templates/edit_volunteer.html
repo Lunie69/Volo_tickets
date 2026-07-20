@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Редактирование</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Редактирование волонтёра</h1>
+
+<form method="POST">
+
+<input
+type="text"
+name="fullname"
+value="{{ volunteer.fullname }}"
+required>
+
+<br><br>
+
+<input
+type="text"
+name="iin"
+value="{{ volunteer.iin }}"
+required>
+
+<br><br>
+
+<input
+type="text"
+name="ticket"
+value="{{ volunteer.ticket_file or '' }}"
+placeholder="ticket001.pdf">
+
+<br><br>
+
+<button>
+
+Сохранить
+
+</button>
+
+</form>
+
+<br>
+
+<a href="{{ url_for('admin.volunteers') }}">
+
+Назад
+
+</a>
+
+</div>
+
+</body>
+</html>

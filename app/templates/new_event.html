@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Подготовка мероприятия</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Подготовка мероприятия</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+<p><b>Excel с волонтёрами</b></p>
+
+<input
+type="file"
+name="excel"
+accept=".xlsx"
+required>
+
+<br><br>
+
+<p><b>ZIP архив с билетами</b></p>
+
+<input
+type="file"
+name="zip"
+accept=".zip"
+required>
+
+<br><br>
+
+<label>
+
+<input
+type="checkbox"
+name="clear"
+checked>
+
+Очистить старые данные
+
+</label>
+
+<br><br>
+
+<button>
+
+Начать подготовку
+
+</button>
+
+</form>
+
+{% if message %}
+
+<hr>
+
+<p>
+
+{{ message }}
+
+</p>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
